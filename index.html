@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karan Cheemalapati — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --border: #222222;
+      --text: #e8e8e8;
+      --muted: #666666;
+      --accent: #c8a96e;
+      --accent2: #7eb8c9;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 20%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(126,184,201,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: 1px solid var(--accent);
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: #d4b87a; border-color: #d4b87a; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s 1s forwards;
+    }
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+    }
+    .about-text p span { color: var(--text); }
+    .about-info { display: flex; flex-direction: column; gap: 1rem; }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .info-row .label { color: var(--muted); letter-spacing: 0.05em; }
+    .info-row .value { color: var(--text); text-align: right; }
+    .info-row a { color: var(--accent); text-decoration: none; }
+    .info-row a:hover { text-decoration: underline; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-category {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-meta { padding-top: 0.2rem; }
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .exp-role {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .project-stack span {
+      font-size: 0.72rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .project-links { display: flex; gap: 0.8rem; }
+    .project-link {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .project-link:hover { border-color: var(--accent); }
+    .project-link.secondary { color: var(--muted); }
+    .project-link.secondary:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+    .edu-degree {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .edu-school {
+      color: var(--accent);
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .edu-courses {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .edu-courses span { color: var(--text); }
+    .edu-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+      padding: 8rem 4rem;
+    }
+    .contact-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .contact-heading {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .contact-heading em { font-style: italic; color: var(--accent); }
+    .contact-sub {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-size: 0.95rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .contact-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+    .contact-divider { color: var(--border); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .edu-card { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">KC</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-label">Data Scientist · Boulder, Colorado</p>
+    <h1 class="hero-name">Karan<br /><em>Cheemalapati</em></h1>
+    <p class="hero-desc">
+      MS Data Science candidate at the University of Colorado Boulder with 2+ years of industry experience in data engineering, machine learning, and analytics consulting. I build end-to-end data solutions — from pipelines to deployed models.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="mailto:karan.cheemalapati@colorado.edu" class="btn btn-outline">Get in Touch</a>
+      <a href="https://github.com/karan-cheemalapati" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Roles Held</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Live Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">400GB</div>
+        <div class="stat-label">Data Processed Daily</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm a <span>Data Science graduate student</span> at the University of Colorado Boulder with a background spanning machine learning, data engineering, and analytics consulting.</p>
+        <p>Before CU Boulder, I spent over two years at <span>Protiviti India</span> progressing from a Business Insights Analyst Intern to a Data Engineer — building dashboards, pipelines, and statistical models for enterprise clients. I also worked as a <span>Data Science Intern at Data Minds Analytics</span>, where I trained and deployed ML models across retail and financial services clients.</p>
+        <p>I'm passionate about turning raw data into clear, actionable insights — whether that means a scalable pipeline, a production model, or an interactive dashboard that tells a compelling story.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-row">
+          <span class="label">Location</span>
+          <span class="value">Boulder, Colorado, USA</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Education</span>
+          <span class="value">MS Data Science, CU Boulder</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Email</span>
+          <span class="value"><a href="mailto:karan.cheemalapati@colorado.edu">karan.cheemalapati@colorado.edu</a></span>
+        </div>
+        <div class="info-row">
+          <span class="label">LinkedIn</span>
+          <span class="value"><a href="https://www.linkedin.com/in/karan-cheemalapati" target="_blank">Karan Cheemalapati ↗</a></span>
+        </div>
+        <div class="info-row">
+          <span class="label">GitHub</span>
+          <span class="value"><a href="https://github.com/karan-cheemalapati" target="_blank">karan-cheemalapati ↗</a></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Status</span>
+          <span class="value" style="color: #6ee7b7;">Open to Opportunities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-category">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Data & Machine Learning</div>
+        <div class="skill-tags">
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">SciPy</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">Apache Spark</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Data Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Visualization & BI</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Qlik Sense</span>
+          <span class="tag">Looker</span>
+          <span class="tag">Streamlit</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Tools & DevOps</div>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Excel</span>
+          <span class="tag">PowerPoint</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">Aug 2024 – May 2025</div>
+          <div class="exp-company">Data Minds Analytics Pvt. Ltd.<br/>Hyderabad, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Data Science Intern</div>
+          <ul class="exp-bullets">
+            <li>Built and evaluated 4 ML models (regression, classification, clustering) using Scikit-learn and Python across retail and financial services clients.</li>
+            <li>Presented model results and recommendations to non-technical stakeholders using Matplotlib, Seaborn, and Plotly.</li>
+            <li>Collaborated with data engineering team to package and deploy models into client production environments using Docker and Git.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">Jan 2024 – Apr 2024</div>
+          <div class="exp-company">Protiviti India Member Pvt. Ltd.<br/>Hyderabad, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Data Engineer</div>
+          <ul class="exp-bullets">
+            <li>Built and maintained scalable data pipelines using Apache Spark, processing ~400 GB of data daily across multiple client systems.</li>
+            <li>Designed cloud data warehouse schemas on AWS, reducing query time by 55% across 2 client environments.</li>
+            <li>Containerized 2 data applications using Docker for consistent deployment across client and internal environments.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">Feb 2023 – Dec 2023</div>
+          <div class="exp-company">Protiviti India Member Pvt. Ltd.<br/>Hyderabad, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Data Analyst Consultant</div>
+          <ul class="exp-bullets">
+            <li>Optimized SQL queries (joins, window functions, CTEs) across 5 client source systems, improving report turnaround time by 40%.</li>
+            <li>Built ~30 client-facing dashboards using Power BI and Tableau supporting 6 concurrent engagements and executive board presentations.</li>
+            <li>Developed statistical models including regression and hypothesis testing, improving forecast accuracy by 27% across 6 engagements.</li>
+            <li>Automated 7 reporting workflows using Python, saving 8–9 hours of manual effort per engagement per week.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">Nov 2022 – Jan 2023</div>
+          <div class="exp-company">Protiviti India Member Pvt. Ltd.<br/>Hyderabad, India</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Business Insights Analyst Intern</div>
+          <ul class="exp-bullets">
+            <li>Developed 7 interactive Power BI dashboards tracking operational and financial KPIs across 3 consulting engagements.</li>
+            <li>Cleaned and validated datasets of 50,000+ records using Python and SQL, reducing data inconsistencies by 34%.</li>
+            <li>Collaborated with senior consultants to translate business requirements into analytical deliverables and presentations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid reveal">
+
+      <div class="project-card">
+        <div class="project-tag">Machine Learning · Recommender System</div>
+        <div class="project-title">Book Recommender System</div>
+        <div class="project-desc">
+          A full-stack book recommendation engine using collaborative filtering on 1.1M user ratings. Built a user-book pivot matrix and applied cosine similarity to recommend titles based on shared reader preferences. Deployed as a live Streamlit web app.
+        </div>
+        <div class="project-stack">
+          <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>Streamlit</span><span>Cosine Similarity</span>
+        </div>
+        <div class="project-links">
+          <a href="https://huggingface.co/spaces/KaranCheemalapati/Book-Recommender-System" target="_blank" class="project-link">Live Demo ↗</a>
+          <a href="https://github.com/karan-cheemalapati/Book-Recommender-System" target="_blank" class="project-link secondary">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Data Analysis · BI Dashboard</div>
+        <div class="project-title">Customer Shopping Behaviour Dashboard</div>
+        <div class="project-desc">
+          An interactive BI-style analytics dashboard exploring shopping patterns across 3,900 customers and 18 features. Includes dynamic sidebar filters, KPI cards, and 8 Plotly charts covering revenue trends, demographics, seasonal patterns, and payment behaviour.
+        </div>
+        <div class="project-stack">
+          <span>Python</span><span>Plotly</span><span>Pandas</span><span>Streamlit</span><span>PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a href="https://huggingface.co/spaces/KaranCheemalapati/Customer-Shopping-Behaviour" target="_blank" class="project-link">Live Demo ↗</a>
+          <a href="https://github.com/karan-cheemalapati/Customer-Shopping-Behaviour" target="_blank" class="project-link secondary">GitHub ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-card reveal">
+      <div>
+        <div class="edu-degree">Master of Science, Data Science</div>
+        <div class="edu-school">University of Colorado Boulder</div>
+        <div class="edu-courses">
+          <span>Relevant Coursework: </span>
+          Data Structures and Algorithms, Statistical Methods and Applications, Data Mining, Big Data Architecture
+        </div>
+      </div>
+      <div class="edu-date">
+        Boulder, Colorado<br/>Expected May 2027
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="contact-label reveal">Get In Touch</p>
+    <h2 class="contact-heading reveal">Let's <em>work together</em></h2>
+    <p class="contact-sub reveal">
+      I'm currently open to Data Scientist, ML Engineer, and Data Analyst opportunities. Feel free to reach out.
+    </p>
+    <a href="mailto:karan.cheemalapati@colorado.edu" class="btn btn-primary reveal">
+      Send an Email
+    </a>
+    <div class="contact-links reveal">
+      <a href="mailto:karan.cheemalapati@colorado.edu" class="contact-link">Email</a>
+      <span class="contact-divider">·</span>
+      <a href="https://www.linkedin.com/in/karan-cheemalapati" target="_blank" class="contact-link">LinkedIn</a>
+      <span class="contact-divider">·</span>
+      <a href="https://github.com/karan-cheemalapati" target="_blank" class="contact-link">GitHub</a>
+      <span class="contact-divider">·</span>
+      <a href="https://huggingface.co/KaranCheemalapati" target="_blank" class="contact-link">Hugging Face</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Karan Cheemalapati</span>
+    <span>Built with HTML · Hosted on GitHub Pages</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
