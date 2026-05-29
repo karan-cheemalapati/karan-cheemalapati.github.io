@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --bg: #080808;
       --bg2: #111111;
@@ -20,9 +20,9 @@
       --accent2: #e8d5a3;
       --white: #eef2f5;
     }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       background: linear-gradient(160deg, #080808 0%, #0d0a05 30%, #0a0808 60%, #080808 100%);
       background-attachment: fixed;
@@ -32,7 +32,7 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-
+ 
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -63,7 +63,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
-
+ 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -157,7 +157,7 @@
       border: 1px solid var(--border);
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
+ 
     .hero-stats {
       display: flex;
       gap: 3rem;
@@ -180,7 +180,7 @@
       text-transform: uppercase;
       margin-top: 0.3rem;
     }
-
+ 
     /* ── SECTIONS ── */
     section {
       padding: 6rem 4rem;
@@ -205,7 +205,7 @@
       line-height: 1.1;
     }
     .section-line { display: none; }
-
+ 
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
@@ -238,7 +238,7 @@
       transition: color 0.2s, border-color 0.2s;
     }
     .info-row a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
+ 
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
@@ -272,7 +272,7 @@
       transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
     .tag:hover { border-color: #c9a84c; color: #c9a84c; background: #1a1a10; }
-
+ 
     /* ── EXPERIENCE ── */
     .exp-list { display: flex; flex-direction: column; gap: 0; }
     .exp-item {
@@ -314,7 +314,7 @@
       left: 0;
       color: var(--accent);
     }
-
+ 
     /* ── PROJECTS ── */
     .projects-grid {
       display: grid;
@@ -373,7 +373,7 @@
     .project-link:hover { border-color: var(--accent); }
     .project-link.secondary { color: var(--muted); }
     .project-link.secondary:hover { color: var(--text); border-color: var(--muted); }
-
+ 
     /* ── EDUCATION ── */
     .edu-card {
       background: linear-gradient(135deg, #141414, #0e0c08);
@@ -408,7 +408,7 @@
       text-align: right;
       white-space: nowrap;
     }
-
+ 
     /* ── CONTACT ── */
     #contact {
       text-align: center;
@@ -455,7 +455,7 @@
     }
     .contact-link:hover { color: var(--accent); }
     .contact-divider { color: var(--border); }
-
+ 
     /* ── FOOTER ── */
     footer {
       padding: 2rem 4rem;
@@ -466,20 +466,20 @@
       font-size: 0.78rem;
       color: var(--muted);
     }
-
+ 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
+ 
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-
+ 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -493,7 +493,7 @@
   </style>
 </head>
 <body>
-
+ 
   <!-- NAV -->
   <nav>
     <a href="#hero" class="nav-logo">KC</a>
@@ -506,7 +506,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
+ 
   <!-- HERO -->
   <section id="hero">
     <p class="hero-label">Data Scientist · Boulder, Colorado</p>
@@ -532,10 +532,10 @@
         <div class="stat-num">2</div>
         <div class="stat-label">Live Projects</div>
       </div>
-
+ 
     </div>
   </section>
-
+ 
   <!-- ABOUT -->
   <section id="about">
     <div class="section-header reveal">
@@ -577,7 +577,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SKILLS -->
   <section id="skills">
     <div class="section-header reveal">
@@ -637,7 +637,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SKILL MODAL -->
   <div id="skill-modal" onclick="closeSkill()" style="
     display:none; position:fixed; inset:0; z-index:999;
@@ -668,7 +668,7 @@
         onmouseout="this.style.color='#555'">✕</button>
     </div>
   </div>
-
+ 
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="section-header reveal">
@@ -677,7 +677,7 @@
       <div class="section-line"></div>
     </div>
     <div class="exp-list">
-
+ 
       <div class="exp-item reveal">
         <div class="exp-meta">
           <div class="exp-date">Aug 2024 – May 2025</div>
@@ -692,7 +692,7 @@
           </ul>
         </div>
       </div>
-
+ 
       <div class="exp-item reveal">
         <div class="exp-meta">
           <div class="exp-date">Jan 2024 – Apr 2024</div>
@@ -707,7 +707,7 @@
           </ul>
         </div>
       </div>
-
+ 
       <div class="exp-item reveal">
         <div class="exp-meta">
           <div class="exp-date">Feb 2023 – Dec 2023</div>
@@ -723,7 +723,7 @@
           </ul>
         </div>
       </div>
-
+ 
       <div class="exp-item reveal">
         <div class="exp-meta">
           <div class="exp-date">Nov 2022 – Jan 2023</div>
@@ -738,10 +738,10 @@
           </ul>
         </div>
       </div>
-
+ 
     </div>
   </section>
-
+ 
   <!-- PROJECTS -->
   <section id="projects">
     <div class="section-header reveal">
@@ -750,7 +750,7 @@
       <div class="section-line"></div>
     </div>
     <div class="projects-grid reveal">
-
+ 
       <div class="project-card">
         <div class="project-tag">Machine Learning · Recommender System</div>
         <div class="project-title">Book Recommender System</div>
@@ -765,7 +765,7 @@
           <a href="https://github.com/karan-cheemalapati/Book-Recommender-System" target="_blank" class="project-link secondary">GitHub ↗</a>
         </div>
       </div>
-
+ 
       <div class="project-card">
         <div class="project-tag">Data Analysis · BI Dashboard</div>
         <div class="project-title">Customer Shopping Behaviour Dashboard</div>
@@ -780,10 +780,10 @@
           <a href="https://github.com/karan-cheemalapati/Customer-Behaviour-Analysis" target="_blank" class="project-link secondary">GitHub ↗</a>
         </div>
       </div>
-
+ 
     </div>
   </section>
-
+ 
   <!-- EDUCATION -->
   <section id="education">
     <div class="section-header reveal">
@@ -805,7 +805,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- CONTACT -->
   <section id="contact">
     <p class="contact-label reveal">Get In Touch</p>
@@ -826,13 +826,13 @@
       <a href="https://huggingface.co/KaranCheemalapati" target="_blank" class="contact-link">Hugging Face</a>
     </div>
   </section>
-
+ 
   <!-- FOOTER -->
   <footer>
     <span>© 2026 Karan Cheemalapati</span>
     <span>Built with HTML · Hosted on GitHub Pages</span>
   </footer>
-
+ 
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -843,7 +843,7 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+ 
     function showSkill(name, desc) {
       document.getElementById('skill-modal-name').textContent = name;
       document.getElementById('skill-modal-desc').textContent = desc;
@@ -855,6 +855,6 @@
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSkill(); });
   </script>
-
+ 
 </body>
 </html>
