@@ -268,7 +268,10 @@
       font-size: 0.78rem;
       padding: 0.3rem 0.75rem;
       border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
+    .tag:hover { border-color: #c9a84c; color: #c9a84c; background: #1a1a10; }
 
     /* ── EXPERIENCE ── */
     .exp-list { display: flex; flex-direction: column; gap: 0; }
@@ -586,54 +589,85 @@
       <div class="skill-card">
         <div class="skill-category">Programming</div>
         <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">SQL</span>
+          <span class="tag" onclick="showSkill('Python', 'A versatile, high-level programming language widely used in data science, ML, and automation. Known for its clean syntax and extensive library ecosystem.')">Python</span>
+          <span class="tag" onclick="showSkill('SQL', 'Structured Query Language for managing and querying relational databases. Essential for data extraction, transformation, and analysis.')">SQL</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Data & Machine Learning</div>
         <div class="skill-tags">
-          <span class="tag">Scikit-learn</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">SciPy</span>
-          <span class="tag">Matplotlib</span>
-          <span class="tag">Seaborn</span>
-          <span class="tag">Plotly</span>
-          <span class="tag">Feature Engineering</span>
+          <span class="tag" onclick="showSkill('Scikit-learn', 'Python library for machine learning. Provides simple tools for classification, regression, clustering, and model evaluation.')">Scikit-learn</span>
+          <span class="tag" onclick="showSkill('Pandas', 'Python library for data manipulation and analysis. Built around DataFrames for fast, flexible handling of structured data.')">Pandas</span>
+          <span class="tag" onclick="showSkill('NumPy', 'Foundation of numerical computing in Python. Provides support for large multi-dimensional arrays and high-performance mathematical operations.')">NumPy</span>
+          <span class="tag" onclick="showSkill('SciPy', 'Scientific computing library built on NumPy. Used for statistical testing, optimization, signal processing, and more.')">SciPy</span>
+          <span class="tag" onclick="showSkill('Matplotlib', 'Core Python plotting library for creating static, animated, and interactive visualizations with full customization control.')">Matplotlib</span>
+          <span class="tag" onclick="showSkill('Seaborn', 'Statistical data visualization library built on Matplotlib. Simplifies creating attractive plots like heatmaps, distributions, and pair plots.')">Seaborn</span>
+          <span class="tag" onclick="showSkill('Plotly', 'Interactive graphing library for Python. Used to build dynamic, web-ready charts and dashboards with hover, zoom, and filter support.')">Plotly</span>
+          <span class="tag" onclick="showSkill('Feature Engineering', 'The process of transforming raw data into meaningful inputs for ML models — including encoding, binning, scaling, and creating new derived variables.')">Feature Engineering</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Data Engineering</div>
         <div class="skill-tags">
-          <span class="tag">Apache Spark</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">AWS</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Data Pipelines</span>
+          <span class="tag" onclick="showSkill('Apache Spark', 'Distributed computing engine for processing large-scale datasets. Used for building scalable data pipelines that handle hundreds of GBs daily.')">Apache Spark</span>
+          <span class="tag" onclick="showSkill('PostgreSQL', 'Powerful open-source relational database. Used for storing, querying, and managing structured data with advanced SQL support.')">PostgreSQL</span>
+          <span class="tag" onclick="showSkill('AWS', 'Amazon Web Services cloud platform. Used for deploying scalable data warehouses, storage, and compute infrastructure for client environments.')">AWS</span>
+          <span class="tag" onclick="showSkill('Docker', 'Containerization platform for packaging applications with their dependencies. Ensures consistent, reproducible deployments across environments.')">Docker</span>
+          <span class="tag" onclick="showSkill('Data Pipelines', 'Automated workflows that move and transform data from source systems to destinations. Built to ensure reliable, scalable, and timely data delivery.')">Data Pipelines</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Visualization & BI</div>
         <div class="skill-tags">
-          <span class="tag">Power BI</span>
-          <span class="tag">Tableau</span>
-          <span class="tag">Qlik Sense</span>
-          <span class="tag">Looker</span>
-          <span class="tag">Streamlit</span>
+          <span class="tag" onclick="showSkill('Power BI', 'Microsoft BI tool for building interactive dashboards and reports. Used extensively for client-facing KPI tracking and executive presentations.')">Power BI</span>
+          <span class="tag" onclick="showSkill('Tableau', 'Leading data visualization platform. Used to create compelling, interactive dashboards for business analytics and storytelling.')">Tableau</span>
+          <span class="tag" onclick="showSkill('Qlik Sense', 'Self-service BI and analytics platform with associative data modeling. Used for building interactive dashboards across complex datasets.')">Qlik Sense</span>
+          <span class="tag" onclick="showSkill('Looker', 'Cloud-based BI platform by Google. Used for data exploration, reporting, and embedding analytics into business workflows.')">Looker</span>
+          <span class="tag" onclick="showSkill('Streamlit', 'Python framework for rapidly building and deploying interactive data apps and dashboards directly from Python scripts.')">Streamlit</span>
         </div>
       </div>
       <div class="skill-card">
         <div class="skill-category">Tools & DevOps</div>
         <div class="skill-tags">
-          <span class="tag">Git</span>
-          <span class="tag">GitHub</span>
-          <span class="tag">Excel</span>
-          <span class="tag">PowerPoint</span>
+          <span class="tag" onclick="showSkill('Git', 'Distributed version control system for tracking code changes, collaborating with teams, and managing project history.')">Git</span>
+          <span class="tag" onclick="showSkill('GitHub', 'Web-based platform for hosting Git repositories. Used for version control, collaboration, and showcasing project portfolios.')">GitHub</span>
+          <span class="tag" onclick="showSkill('Excel', 'Microsoft spreadsheet tool widely used for data analysis, financial modeling, pivot tables, and business reporting.')">Excel</span>
+          <span class="tag" onclick="showSkill('PowerPoint', 'Presentation software used to communicate analytical findings and project results to non-technical stakeholders.')">PowerPoint</span>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- SKILL MODAL -->
+  <div id="skill-modal" onclick="closeSkill()" style="
+    display:none; position:fixed; inset:0; z-index:999;
+    background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
+    align-items:center; justify-content:center;">
+    <div onclick="event.stopPropagation()" style="
+      background: linear-gradient(135deg, #141414, #0e0e0a);
+      border: 1px solid #c9a84c;
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      max-width: 420px;
+      width: 90%;
+      position: relative;">
+      <div id="skill-modal-name" style="
+        font-family: 'Instrument Serif', serif;
+        font-size: 1.6rem;
+        color: #c9a84c;
+        margin-bottom: 0.8rem;"></div>
+      <div id="skill-modal-desc" style="
+        font-size: 0.92rem;
+        color: #a0aab4;
+        line-height: 1.7;"></div>
+      <button onclick="closeSkill()" style="
+        position:absolute; top:1rem; right:1.2rem;
+        background:none; border:none; color:#555;
+        font-size:1.2rem; cursor:pointer; transition:color 0.2s;"
+        onmouseover="this.style.color='#c9a84c'"
+        onmouseout="this.style.color='#555'">✕</button>
+    </div>
+  </div>
 
   <!-- EXPERIENCE -->
   <section id="experience">
@@ -809,6 +843,17 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function showSkill(name, desc) {
+      document.getElementById('skill-modal-name').textContent = name;
+      document.getElementById('skill-modal-desc').textContent = desc;
+      const modal = document.getElementById('skill-modal');
+      modal.style.display = 'flex';
+    }
+    function closeSkill() {
+      document.getElementById('skill-modal').style.display = 'none';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSkill(); });
   </script>
 
 </body>
