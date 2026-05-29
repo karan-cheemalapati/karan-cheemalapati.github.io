@@ -10,21 +10,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #1e2530;
-      --bg2: #242d3a;
-      --bg3: #2a3444;
-      --border: #334155;
-      --text: #e2eaf4;
-      --muted: #7a9bb5;
-      --accent: #4fc3f7;
-      --accent2: #81e6c8;
-      --white: #ffffff;
+      --bg: #080808;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: #2a2a2a;
+      --text: #c8d0d8;
+      --muted: #7a8a96;
+      --accent: #c9a84c;
+      --accent2: #e8d5a3;
+      --white: #eef2f5;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: linear-gradient(160deg, #1e2530 0%, #1a2540 30%, #1e2d3d 60%, #1a2530 100%);
+      background: linear-gradient(160deg, #080808 0%, #0d0a05 30%, #0a0808 60%, #080808 100%);
       background-attachment: fixed;
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
@@ -42,7 +42,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 4rem;
-      background: rgba(30,37,48,0.92);
+      background: rgba(8,8,8,0.93);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -79,7 +79,7 @@
       position: absolute;
       top: -200px; right: -200px;
       width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(79,195,247,0.12) 0%, rgba(56,128,200,0.06) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(180,140,50,0.05) 40%, transparent 70%);
       pointer-events: none;
     }
     #hero::after {
@@ -87,7 +87,7 @@
       position: absolute;
       bottom: -100px; left: 10%;
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(129,230,200,0.09) 0%, rgba(56,200,160,0.04) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,213,163,0.07) 0%, rgba(200,160,80,0.03) 40%, transparent 70%);
       pointer-events: none;
     }
     .hero-label {
@@ -110,7 +110,9 @@
     }
     .hero-name em {
       font-style: italic;
-      color: var(--accent);
+      background: linear-gradient(90deg, #c9a84c, #e8d5a3, #c9a84c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .hero-desc {
       max-width: 560px;
@@ -202,11 +204,7 @@
       color: var(--white);
       line-height: 1.1;
     }
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    .section-line { display: none; }
 
     /* ── ABOUT ── */
     .about-grid {
@@ -231,9 +229,15 @@
       font-size: 0.88rem;
     }
     .info-row .label { color: var(--muted); letter-spacing: 0.05em; }
-    .info-row .value { color: var(--text); text-align: right; }
-    .info-row a { color: var(--accent); text-decoration: none; }
-    .info-row a:hover { text-decoration: underline; }
+    .info-row .value { color: #c8d0d8; text-align: right; }
+    .info-row a { 
+      color: #c8d0d8; 
+      text-decoration: none; 
+      transition: color 0.2s;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .info-row a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
     /* ── SKILLS ── */
     .skills-grid {
@@ -242,13 +246,13 @@
       gap: 1.5rem;
     }
     .skill-card {
-      background: linear-gradient(135deg, #242d3a, #1e2a3a);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #141414, #0e0e0e);
+      border: 1px solid #2a2a2a;
       border-radius: 4px;
       padding: 1.8rem;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); background: linear-gradient(135deg, #2a3444, #243040); }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); background: linear-gradient(135deg, #1a1a1a, #121208); }
     .skill-category {
       font-size: 0.7rem;
       letter-spacing: 0.18em;
@@ -258,9 +262,9 @@
     }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text);
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      color: #a0aab4;
       font-size: 0.78rem;
       padding: 0.3rem 0.75rem;
       border-radius: 2px;
@@ -297,7 +301,7 @@
     .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
     .exp-bullets li {
       font-size: 0.88rem;
-      color: var(--muted);
+      color: #a0aab4;
       padding-left: 1rem;
       position: relative;
     }
@@ -315,15 +319,15 @@
       gap: 1.5rem;
     }
     .project-card {
-      background: linear-gradient(145deg, #242d3a, #1c2838);
-      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #141414, #0c0c0a);
+      border: 1px solid #2a2a2a;
       border-radius: 4px;
       padding: 2rem;
       transition: border-color 0.2s, transform 0.2s;
       display: flex;
       flex-direction: column;
     }
-    .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); background: linear-gradient(145deg, #2a3444, #1e2f40); }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); background: linear-gradient(145deg, #1a1a14, #0e0e0a); }
     .project-tag {
       font-size: 0.7rem;
       letter-spacing: 0.15em;
@@ -347,9 +351,9 @@
     .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
     .project-stack span {
       font-size: 0.72rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--muted);
+      background: #111111;
+      border: 1px solid #2a2a2a;
+      color: #7a8a96;
       padding: 0.2rem 0.6rem;
       border-radius: 2px;
     }
@@ -369,8 +373,8 @@
 
     /* ── EDUCATION ── */
     .edu-card {
-      background: linear-gradient(135deg, #242d3a, #1c2a3a);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #141414, #0e0c08);
+      border: 1px solid #2a2a2a;
       border-radius: 4px;
       padding: 2.5rem;
       display: grid;
@@ -406,7 +410,7 @@
     #contact {
       text-align: center;
       padding: 8rem 4rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(79,195,247,0.04) 50%, transparent 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.04) 50%, transparent 100%);
     }
     .contact-label {
       font-size: 0.75rem;
@@ -509,8 +513,8 @@
     </p>
     <div class="hero-ctas">
       <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="mailto:karan.cheemalapati@colorado.edu" class="btn btn-outline">Get in Touch</a>
       <a href="https://github.com/karan-cheemalapati" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/karan-cheemalapati" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -565,7 +569,7 @@
         </div>
         <div class="info-row">
           <span class="label">Status</span>
-          <span class="value" style="color: #81e6c8;">Open to Opportunities</span>
+          <span class="value" style="color: #c9a84c;">Open to Internship / Full-Time Opportunities</span>
         </div>
       </div>
     </div>
